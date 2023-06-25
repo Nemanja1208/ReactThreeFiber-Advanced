@@ -1,5 +1,6 @@
 export default function Controls({ controls }) {
   const {
+    gridActivated,
     xRotation,
     yRotation,
     zRotation,
@@ -9,6 +10,7 @@ export default function Controls({ controls }) {
     xScale,
     yScale,
     zScale,
+    setGridActivated,
     setXRotation,
     setYRotation,
     setZRotation,
@@ -107,6 +109,12 @@ export default function Controls({ controls }) {
             step={1 / 32}
             type="number"
           />
+        </div>
+        <div className="control">
+          <label>Grid</label>
+          <button onClick={() => setGridActivated(!gridActivated)}>
+            Show Grid
+          </button>
         </div>
       </div>
     </div>

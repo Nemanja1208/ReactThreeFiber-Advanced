@@ -65,6 +65,7 @@ const Cube = ({ position, rotation, scale = [1, 1, 1], handleClick }) => (
 
 export default function App() {
   // Here we declare our state for the transformation of our Box
+  const [gridActivated, setGridActivated] = useState(false);
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
   const [zPosition, setZPosition] = useState(0);
@@ -103,7 +104,8 @@ export default function App() {
           <OrbitControls />
           <directionalLight intensity={0.5} position={[6, 2, 1]} />
           {/* <ambientLight intensity={0.1} /> */}
-          <Grid size={10} />
+          {gridActivated && <Grid size={10}></Grid>}
+          {/* <Grid size={10} /> */}
           {/* <Light
             position={[-3, 0, -2]}
             color="blue"
@@ -124,6 +126,7 @@ export default function App() {
       </Canvas>
       <Controls
         controls={{
+          gridActivated,
           xPosition,
           yPosition,
           zPosition,
@@ -133,6 +136,7 @@ export default function App() {
           xScale,
           yScale,
           zScale,
+          setGridActivated,
           setXPosition,
           setYPosition,
           setZPosition,
