@@ -1,8 +1,9 @@
-import React, { useState, Suspense, useRef } from "react";
-import { Canvas, useFrame } from "react-three-fiber";
-import { Box, OrbitControls, Text, useTexture } from "@react-three/drei";
+import React, { useState, Suspense } from "react";
+import { Canvas } from "react-three-fiber";
+import { Box, OrbitControls, Text, Torus, Sphere } from "@react-three/drei";
 import Grid from "./Grid";
 import Controls from "./Controls";
+import Bearing from "./Bearing";
 import "./styles.css";
 
 // Cube object with position rotation and scaling props as well as onClick that is only console.log for now...
@@ -78,6 +79,8 @@ export default function App() {
   const [yScale, setYScale] = useState(1);
   const [zScale, setZScale] = useState(1);
 
+  const [isShallow, setIsShallow] = useState(true);
+
   // The parent element is ALWAYS the Canvas component and it has camera param which is the config on how we view the canvas...
   // the Suspense is lazyLoad that shows Loading text until our Canvas is loaded
   // In React Three Fiber, the OrbitControls component is often used to provide user-controlled navigation within a 3D scene.
@@ -102,16 +105,18 @@ export default function App() {
           }
         >
           <OrbitControls />
-          <directionalLight intensity={0.5} position={[6, 2, 1]} />
-          {/* <ambientLight intensity={0.1} /> */}
+          <directionalLight intensity={0.5} position={[6, 5, 4]} />
+          <directionalLight intensity={0.1} position={[-6, -5, -4]} />
+          <ambientLight intensity={0.1} />
           {gridActivated && <Grid size={10}></Grid>}
-          {/* <Grid size={10} /> */}
-          {/* <Light
-            position={[-3, 0, -2]}
-            color="blue"
-            intensity={2}
-            offset={200}
-          /> */}
+          {/* <Bearing /> */}
+          <Bearing
+            rotation={[
+              xRotation * Math.PI,
+              yRotation * Math.PI,
+              zRotation * Math.PI,
+            ]}
+          />
           <Cube
             handleClick={() => console.log("clicked on the cube")}
             rotation={[
@@ -127,6 +132,7 @@ export default function App() {
       <Controls
         controls={{
           gridActivated,
+          isShallow,
           xPosition,
           yPosition,
           zPosition,
@@ -137,6 +143,7 @@ export default function App() {
           yScale,
           zScale,
           setGridActivated,
+          setIsShallow,
           setXPosition,
           setYPosition,
           setZPosition,

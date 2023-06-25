@@ -1,6 +1,7 @@
 export default function Controls({ controls }) {
   const {
     gridActivated,
+    isShallow,
     xRotation,
     yRotation,
     zRotation,
@@ -11,6 +12,7 @@ export default function Controls({ controls }) {
     yScale,
     zScale,
     setGridActivated,
+    setIsShallow,
     setXRotation,
     setYRotation,
     setZRotation,
@@ -114,6 +116,12 @@ export default function Controls({ controls }) {
           <label>Grid</label>
           <button onClick={() => setGridActivated(!gridActivated)}>
             Show Grid
+          </button>
+        </div>
+        <div className="control">
+          <label>Grid</label>
+          <button onClick={() => setIsShallow(!isShallow)}>
+            Toggle Torus Appearance
           </button>
         </div>
       </div>
