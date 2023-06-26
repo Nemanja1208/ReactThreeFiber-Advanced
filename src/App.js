@@ -1,10 +1,20 @@
 import React, { useState, Suspense } from "react";
-import { Canvas } from "react-three-fiber";
+import { Canvas, useLoader } from "react-three-fiber";
 import { Box, OrbitControls, Text, Torus, Sphere } from "@react-three/drei";
 import Grid from "./Grid";
 import Controls from "./Controls";
 import Bearing from "./Bearing";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "./styles.css";
+
+const Model = () => {
+  const gltf = useLoader(GLTFLoader, "./pistola.gltf");
+  return (
+    <>
+      <primitive object={gltf.scene} scale={0.4} />
+    </>
+  );
+};
 
 // Cube object with position rotation and scaling props as well as onClick that is only console.log for now...
 // <group> that is commented can be used and is always used for grouping into a parentNode where all the components are inside the same coordinate system
@@ -117,6 +127,7 @@ export default function App() {
               zRotation * Math.PI,
             ]}
           />
+          <Model />
           <Cube
             handleClick={() => console.log("clicked on the cube")}
             rotation={[

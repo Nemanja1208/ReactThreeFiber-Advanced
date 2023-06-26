@@ -118,12 +118,12 @@ export default function Controls({ controls }) {
             Show Grid
           </button>
         </div>
-        <div className="control">
-          <label>Grid</label>
+        {/* <div className="control">
+          <label>Appearance</label>
           <button onClick={() => setIsShallow(!isShallow)}>
             Toggle Torus Appearance
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
