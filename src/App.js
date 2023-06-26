@@ -50,11 +50,13 @@ export default function App() {
           }
         >
           <OrbitControls />
-          <directionalLight intensity={0.5} position={[6, 5, 4]} />
-          <directionalLight intensity={0.1} position={[-6, -5, -4]} />
-          <ambientLight intensity={0.1} />
+          <directionalLight intensity={1} position={[10, 5, 4]} />
+          <directionalLight intensity={1} position={[-10, -5, -4]} />
+          <directionalLight intensity={1} position={[10, -5, 5]} />
+          <ambientLight intensity={1} />
           {gridActivated && <Grid size={10}></Grid>}
           <BearingSKF
+            position={[xPosition, yPosition, zPosition]}
             rotation={[
               xRotation * Math.PI,
               yRotation * Math.PI,
